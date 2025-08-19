@@ -5,8 +5,7 @@ import 'dart:developer';
 import 'package:http/http.dart' as http;
 
 class MapsPlaceAutocomplete {
-  MapsPlaceAutocomplete(
-      {required this.apiKey, this.onTap});
+  MapsPlaceAutocomplete({required this.apiKey, this.onTap});
   final String apiKey;
   final Function(dynamic)? onTap;
 

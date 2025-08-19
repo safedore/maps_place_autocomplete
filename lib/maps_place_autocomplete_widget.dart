@@ -8,7 +8,8 @@ class PlaceSuggestionWidget extends StatelessWidget {
   final Function(dynamic)? onTap;
   final Widget? errorWidget;
 
-  const PlaceSuggestionWidget({super.key,
+  const PlaceSuggestionWidget({
+    super.key,
     required this.apiKey,
     required this.input,
     required this.sessionToken,
@@ -19,17 +20,19 @@ class PlaceSuggestionWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<dynamic>>(
-      future: MapsPlaceAutocomplete(apiKey: apiKey).getSuggestionList(input, sessionToken),
+      future: MapsPlaceAutocomplete(apiKey: apiKey)
+          .getSuggestionList(input, sessionToken),
       builder: (context, snapshot) {
         if (snapshot.hasError) {
           // If there is an error fetching data
           return errorWidget ?? Center(child: Text('Error: ${snapshot.error}'));
         } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
           // If no data or empty data
-          return errorWidget ?? const Center(child: Text('No suggestions available.'));
+          return errorWidget ??
+              const Center(child: Text('No suggestions available.'));
         } else {
           // Once data is available, display it
-          List<dynamic> suggestions = snapshot.data!;
+          final List<dynamic> suggestions = snapshot.data!;
           return ListView.separated(
             padding: EdgeInsets.zero,
             shrinkWrap: true,
@@ -46,8 +49,13 @@ class PlaceSuggestionWidget extends StatelessWidget {
                     children: [
                       const Icon(Icons.location_on),
                       const SizedBox(width: 9),
-                      if (suggestions[index]['placePrediction']['text'] != null) ...[
-                        Expanded(child: Text("${suggestions[index]['placePrediction']['text']['text'] ?? ""}")),
+                      if (suggestions[index]['placePrediction']['text'] !=
+                          null) ...[
+                        Expanded(
+                          child: Text(
+                            "${suggestions[index]['placePrediction']['text']['text'] ?? ""}",
+                          ),
+                        ),
                       ],
                     ],
                   ),
