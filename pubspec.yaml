@@ -1,6 +1,6 @@
 name: maps_place_autocomplete
 description: "Latest google maps place auto complete for flutter"
-version: 1.0.1
+version: 1.0.1+1
 homepage: "https://github.com/safedore/maps_place_autocomplete"
 
 environment:
